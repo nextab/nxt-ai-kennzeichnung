@@ -1,0 +1,332 @@
+# Translation of NXT AI Label.
+# Copyright (C) 2026 nexTab
+# This file is distributed under the same license as the NXT AI Label package.
+msgid ""
+msgstr ""
+"Project-Id-Version: NXT AI Label 1.0.0\n"
+"Report-Msgid-Bugs-To: https://nextab.de\n"
+"POT-Creation-Date: 2026-10-02 22:57+0200\n"
+"PO-Revision-Date: 2026-10-02 23:00+0200\n"
+"Last-Translator: nexTab\n"
+"Language-Team: nexTab\n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: inc/class-admin.php:21 inc/class-admin.php:22 inc/class-admin.php:44
+#: inc/class-media-fields.php:182
+msgid "AI label"
+msgstr "Oznaczenie AI"
+
+#: inc/class-admin.php:31
+msgid "You are not allowed to view this page."
+msgstr "Nie masz uprawnień do wyświetlenia tej strony."
+
+#: inc/class-admin.php:45
+msgid "Only images you mark in the library are changed. Every other file stays as it is."
+msgstr "Zmieniane są tylko obrazy oznaczone w bibliotece mediów. Pozostałe pliki zostają bez zmian."
+
+#: inc/class-admin.php:46
+msgid "Automatic when the file declares AI origin"
+msgstr "Automatycznie, gdy plik deklaruje pochodzenie AI"
+
+#: inc/class-admin.php:47
+msgid "New uploads are labeled only when the file itself contains trainedAlgorithmicMedia or compositeWithTrainedAlgorithmicMedia (IPTC Digital Source Type, often via Content Credentials). A label you remove stays removed."
+msgstr "Nowe pliki są oznaczane tylko wtedy, gdy sam plik zawiera trainedAlgorithmicMedia lub compositeWithTrainedAlgorithmicMedia (IPTC Digital Source Type, często przez Content Credentials). Usunięte oznaczenie pozostaje usunięte."
+
+#: inc/class-admin.php:48
+msgid "Generators without that metadata should call nxt_ai_label_mark( $attachment_id ) after the attachment is created. The filter nxt_ai_label_attachment_is_generated runs only while automatic labeling is on."
+msgstr "Generatory bez tych metadanych powinny po utworzeniu załącznika wywołać nxt_ai_label_mark( $attachment_id ). Filtr nxt_ai_label_attachment_is_generated działa tylko przy włączonym oznaczaniu automatycznym."
+
+#: inc/class-admin.php:54
+msgid "New uploads"
+msgstr "Nowe pliki"
+
+#: inc/class-admin.php:56
+msgid "Apply a label when the file declares an AI origin"
+msgstr "Wstaw oznaczenie, gdy plik deklaruje pochodzenie AI"
+
+#: inc/class-admin.php:60 inc/class-admin.php:140
+#: inc/class-media-fields.php:171
+msgid "Label"
+msgstr "Oznaczenie"
+
+#: inc/class-admin.php:68 inc/class-admin.php:168
+#: inc/class-media-fields.php:173
+msgid "Position"
+msgstr "Pozycja"
+
+#: inc/class-admin.php:78 inc/class-admin.php:178
+#: inc/class-media-fields.php:175
+msgid "Size"
+msgstr "Rozmiar"
+
+#: inc/class-admin.php:88
+msgid "Save automatic labeling"
+msgstr "Zapisz oznaczanie automatyczne"
+
+#: inc/class-admin.php:93
+msgid "Scan existing images for AI origin"
+msgstr "Sprawdź istniejące obrazy pod kątem pochodzenia AI"
+
+#: inc/class-admin.php:95
+msgid "Checks only images with no decision yet and writes the label using the settings above. WP-CLI: wp nxt-ai-label detect"
+msgstr "Sprawdza tylko obrazy bez decyzji i zapisuje oznaczenie według ustawień powyżej. WP-CLI: wp nxt-ai-label detect"
+
+#: inc/class-admin.php:96
+msgid "Single image: open it in the library, choose label, position and size, then Apply label."
+msgstr "Pojedynczy obraz: otwórz go w bibliotece, wybierz oznaczenie, pozycję i rozmiar, a następnie Zastosuj oznaczenie."
+
+#: inc/class-admin.php:97
+msgid "Several images: select them in the list and choose the bulk action Apply AI label."
+msgstr "Wiele obrazów: zaznacz je na liście i wybierz działanie zbiorcze Zastosuj oznaczenie AI."
+
+#: inc/class-admin.php:98
+msgid "image with an active label."
+msgid_plural "images with an active label."
+msgstr[0] "obraz z aktywnym oznaczeniem."
+msgstr[1] "obrazy z aktywnym oznaczeniem."
+msgstr[2] "obrazów z aktywnym oznaczeniem."
+
+#: inc/class-admin.php:102
+msgid "Regenerate applied labels"
+msgstr "Wygeneruj ponownie zastosowane oznaczenia"
+
+#: inc/class-admin.php:104
+msgid "Rewrites labels that are already applied, using the unmarked backup. It does not add new ones. WP-CLI: wp nxt-ai-label regenerate"
+msgstr "Zapisuje od nowa już zastosowane oznaczenia z nieoznaczonej kopii. Nie dodaje nowych. WP-CLI: wp nxt-ai-label regenerate"
+
+#: inc/class-admin.php:116 inc/class-admin.php:234
+msgid "Apply AI label"
+msgstr "Zastosuj oznaczenie AI"
+
+#: inc/class-admin.php:119
+#, php-format
+msgid "Only this %d image. The rest of the library stays untouched."
+msgid_plural "Only these %d images. The rest of the library stays untouched."
+msgstr[0] "Tylko ten %d obraz. Reszta biblioteki pozostaje bez zmian."
+msgstr[1] "Tylko te %d obrazy. Reszta biblioteki pozostaje bez zmian."
+msgstr[2] "Tylko te %d obrazów. Reszta biblioteki pozostaje bez zmian."
+
+#: inc/class-admin.php:133
+msgid "Action"
+msgstr "Działanie"
+
+#: inc/class-admin.php:135 inc/class-media-fields.php:177
+msgid "Apply label"
+msgstr "Zastosuj oznaczenie"
+
+#: inc/class-admin.php:136 inc/class-media-fields.php:178
+msgid "Remove label"
+msgstr "Usuń oznaczenie"
+
+#: inc/class-admin.php:188
+msgid "Apply to selected images"
+msgstr "Zastosuj do zaznaczonych obrazów"
+
+#: inc/class-admin.php:196 inc/class-admin.php:207 inc/class-admin.php:419
+#: inc/class-admin.php:440
+msgid "You are not allowed to do this."
+msgstr "Nie masz uprawnień do tej czynności."
+
+#: inc/class-admin.php:215
+msgid "That selection has expired. Select the images in the library again."
+msgstr "To zaznaczenie wygasło. Zaznacz obrazy w bibliotece ponownie."
+
+#: inc/class-admin.php:235
+msgid "Regenerate AI label"
+msgstr "Wygeneruj ponownie oznaczenie AI"
+
+#: inc/class-admin.php:305
+#, php-format
+msgid "AI label applied: %1$d. Skipped: %2$d."
+msgstr "Zastosowano oznaczenie AI: %1$d. Pominięto: %2$d."
+
+#: inc/class-admin.php:311
+#, php-format
+msgid "AI label removed: %1$d. Skipped: %2$d."
+msgstr "Usunięto oznaczenie AI: %1$d. Pominięto: %2$d."
+
+#: inc/class-admin.php:317
+#, php-format
+msgid "AI origin checked: %1$d. Labeled: %2$d."
+msgstr "Sprawdzono pochodzenie AI: %1$d. Oznaczono: %2$d."
+
+#: inc/class-admin.php:321
+msgid "Automatic labeling saved."
+msgstr "Zapisano oznaczanie automatyczne."
+
+#: inc/class-admin.php:324
+#, php-format
+msgid "AI label regenerated: %1$d. Skipped: %2$d. Images without a label stay unchanged."
+msgstr "Wygenerowano ponownie oznaczenie AI: %1$d. Pominięto: %2$d. Obrazy bez oznaczenia pozostają bez zmian."
+
+#: inc/class-cli.php:39
+msgid "No valid IDs."
+msgstr "Brak prawidłowych identyfikatorów."
+
+#: inc/class-cli.php:47
+#, php-format
+msgid "Regenerated: %1$d. Skipped: %2$d."
+msgstr "Wygenerowano ponownie: %1$d. Pominięto: %2$d."
+
+#: inc/class-cli.php:84
+#, php-format
+msgid "Labeled: %s"
+msgstr "Oznaczono: %s"
+
+#: inc/class-cli.php:92
+#, php-format
+msgid "Checked: %1$d. Labeled: %2$d."
+msgstr "Sprawdzono: %1$d. Oznaczono: %2$d."
+
+#: inc/class-cover.php:81
+#, php-format
+msgid "AI label: %s"
+msgstr "Oznaczenie AI: %s"
+
+#: inc/class-labels.php:19
+msgid "AI Generated · black · semi-transparent"
+msgstr "AI Generated · czarny · półprzezroczysty"
+
+#: inc/class-labels.php:20 inc/class-labels.php:26 inc/class-labels.php:32
+#: inc/class-labels.php:38
+msgid "AI Generated"
+msgstr "AI Generated"
+
+#: inc/class-labels.php:25
+msgid "AI Generated · black · solid"
+msgstr "AI Generated · czarny · nieprzezroczysty"
+
+#: inc/class-labels.php:31
+msgid "AI Generated · white · semi-transparent"
+msgstr "AI Generated · biały · półprzezroczysty"
+
+#: inc/class-labels.php:37
+msgid "AI Generated · white · solid"
+msgstr "AI Generated · biały · nieprzezroczysty"
+
+#: inc/class-labels.php:43
+msgid "AI Modified · black · semi-transparent"
+msgstr "AI Modified · czarny · półprzezroczysty"
+
+#: inc/class-labels.php:44 inc/class-labels.php:50 inc/class-labels.php:56
+#: inc/class-labels.php:62
+msgid "AI Modified"
+msgstr "AI Modified"
+
+#: inc/class-labels.php:49
+msgid "AI Modified · black · solid"
+msgstr "AI Modified · czarny · nieprzezroczysty"
+
+#: inc/class-labels.php:55
+msgid "AI Modified · white · semi-transparent"
+msgstr "AI Modified · biały · półprzezroczysty"
+
+#: inc/class-labels.php:61
+msgid "AI Modified · white · solid"
+msgstr "AI Modified · biały · nieprzezroczysty"
+
+#: inc/class-labels.php:67
+msgid "AI · black · semi-transparent"
+msgstr "AI · czarny · półprzezroczysty"
+
+#: inc/class-labels.php:68 inc/class-labels.php:74 inc/class-labels.php:80
+#: inc/class-labels.php:86
+msgid "AI"
+msgstr "AI"
+
+#: inc/class-labels.php:73
+msgid "AI · black · solid"
+msgstr "AI · czarny · nieprzezroczysty"
+
+#: inc/class-labels.php:79
+msgid "AI · white · semi-transparent"
+msgstr "AI · biały · półprzezroczysty"
+
+#: inc/class-labels.php:85
+msgid "AI · white · solid"
+msgstr "AI · biały · nieprzezroczysty"
+
+#: inc/class-labels.php:111
+msgid "Top left"
+msgstr "Lewy górny róg"
+
+#: inc/class-labels.php:112
+msgid "Top right"
+msgstr "Prawy górny róg"
+
+#: inc/class-labels.php:113
+msgid "Bottom left"
+msgstr "Lewy dolny róg"
+
+#: inc/class-labels.php:114
+msgid "Bottom right"
+msgstr "Prawy dolny róg"
+
+#: inc/class-labels.php:128
+msgid "Small"
+msgstr "Mały"
+
+#: inc/class-labels.php:132
+msgid "Medium"
+msgstr "Średni"
+
+#: inc/class-labels.php:136
+msgid "Large"
+msgstr "Duży"
+
+#: inc/class-media-fields.php:64 inc/class-media-fields.php:170
+msgid "Label is applied."
+msgstr "Oznaczenie jest zastosowane."
+
+#: inc/class-media-fields.php:65 inc/class-media-fields.php:170
+msgid "No label."
+msgstr "Brak oznaczenia."
+
+#: inc/class-media-fields.php:66
+msgid "Removing label"
+msgstr "Usuwanie oznaczenia"
+
+#: inc/class-media-fields.php:67
+msgid "Writing label"
+msgstr "Zapisywanie oznaczenia"
+
+#: inc/class-media-fields.php:68
+msgid "Failed."
+msgstr "Niepowodzenie."
+
+#: inc/class-media-fields.php:69
+msgid "Request failed."
+msgstr "Żądanie nie powiodło się."
+
+#: inc/class-media-fields.php:141
+#, php-format
+msgid "%1$s (%2$d px)"
+msgstr "%1$s (%2$d px)"
+
+#: inc/class-media-fields.php:195
+msgid "You cannot edit this image."
+msgstr "Nie możesz edytować tego obrazu."
+
+#: inc/class-media-fields.php:205
+msgid "Could not write the label."
+msgstr "Nie udało się zapisać oznaczenia."
+
+#: inc/class-media-fields.php:214
+msgid "Label applied."
+msgstr "Zastosowano oznaczenie."
+
+#: inc/class-media-fields.php:214
+msgid "Label removed."
+msgstr "Usunięto oznaczenie."
+
+#: nxt-ai-label.php
+msgid "NXT AI Label"
+msgstr "NXT AI Label"
+
+#: nxt-ai-label.php
+msgid "Burns official EU AI labels into selected media images, thumbnails and EWWW WebP files."
+msgstr "Wypala oficjalne unijne oznaczenia AI w wybranych obrazach biblioteki mediów, miniaturach i plikach WebP EWWW."

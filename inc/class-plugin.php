@@ -10,6 +10,7 @@ final class NXT_AI_Label_Plugin {
 	}
 
 	public static function boot(): void {
+		add_action('init', [self::class, 'load_textdomain']);
 		NXT_AI_Label_Media_Fields::register();
 		NXT_AI_Label_Admin::register();
 		NXT_AI_Label_Cover::register();
@@ -45,5 +46,13 @@ final class NXT_AI_Label_Plugin {
 
 	public static function on_delete_attachment(int $attachment_id): void {
 		NXT_AI_Label_Processor::delete_backup($attachment_id);
+	}
+
+	public static function load_textdomain(): void {
+		load_plugin_textdomain(
+			'nxt-ai-label',
+			false,
+			dirname(plugin_basename(NXT_AI_LABEL_FILE)) . '/languages'
+		);
 	}
 }

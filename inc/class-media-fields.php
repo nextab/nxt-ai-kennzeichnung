@@ -60,6 +60,14 @@ final class NXT_AI_Label_Media_Fields {
 			'nonce' => wp_create_nonce('nxt_ai_label_apply'),
 			'labels' => $labels,
 			'heights' => $heights,
+			'i18n' => [
+				'applied' => __('Label is applied.', 'nxt-ai-label'),
+				'none' => __('No label.', 'nxt-ai-label'),
+				'removing' => __('Removing label', 'nxt-ai-label'),
+				'writing' => __('Writing label', 'nxt-ai-label'),
+				'failed' => __('Failed.', 'nxt-ai-label'),
+				'requestFailed' => __('Request failed.', 'nxt-ai-label'),
+			],
 		]);
 	}
 
@@ -125,29 +133,33 @@ final class NXT_AI_Label_Media_Fields {
 		$scale_options = '';
 		foreach (NXT_AI_Label_Labels::scales() as $key => $item) {
 			$scale_options .= sprintf(
-				'<option value="%s"%s>%s (%d px)</option>',
+				'<option value="%s"%s>%s</option>',
 				esc_attr($key),
 				selected($scale, $key, false),
-				esc_html($item['label']),
-				(int) $item['height']
+				esc_html(sprintf(
+					/* translators: 1: size name, 2: height in pixels */
+					__('%1$s (%2$d px)', 'nxt-ai-label'),
+					$item['label'],
+					(int) $item['height']
+				))
 			);
 		}
 
 		$html = sprintf(
 			'<div class="nxt-ai-label" data-id="%1$d" data-enabled="%2$s" data-full-width="%3$d" data-full-height="%4$d">
 				<p class="nxt-ai-label__status">%5$s</p>
-				<label class="nxt-ai-label__field">Kennzeichnung
-					<select data-field="slug">%6$s</select>
+				<label class="nxt-ai-label__field">%6$s
+					<select data-field="slug">%7$s</select>
 				</label>
-				<label class="nxt-ai-label__field">Position
-					<select data-field="position">%7$s</select>
+				<label class="nxt-ai-label__field">%8$s
+					<select data-field="position">%9$s</select>
 				</label>
-				<label class="nxt-ai-label__field">Größe
-					<select data-field="scale">%8$s</select>
+				<label class="nxt-ai-label__field">%10$s
+					<select data-field="scale">%11$s</select>
 				</label>
 				<p class="nxt-ai-label__actions">
-					<button type="button" class="button button-primary" data-action="apply">Kennzeichnung setzen</button>
-					<button type="button" class="button" data-action="remove">Kennzeichnung entfernen</button>
+					<button type="button" class="button button-primary" data-action="apply">%12$s</button>
+					<button type="button" class="button" data-action="remove">%13$s</button>
 				</p>
 				<p class="nxt-ai-label__msg" aria-live="polite"></p>
 			</div>',
@@ -155,14 +167,19 @@ final class NXT_AI_Label_Media_Fields {
 			$enabled ? '1' : '0',
 			$full_w,
 			$full_h,
-			$enabled ? 'Kennzeichnung ist gesetzt.' : 'Keine Kennzeichnung.',
+			esc_html($enabled ? __('Label is applied.', 'nxt-ai-label') : __('No label.', 'nxt-ai-label')),
+			esc_html__('Label', 'nxt-ai-label'),
 			$label_options,
+			esc_html__('Position', 'nxt-ai-label'),
 			$position_options,
-			$scale_options
+			esc_html__('Size', 'nxt-ai-label'),
+			$scale_options,
+			esc_html__('Apply label', 'nxt-ai-label'),
+			esc_html__('Remove label', 'nxt-ai-label')
 		);
 
 		$form_fields['nxt_ai_label'] = [
-			'label' => 'KI-Kennzeichnung',
+			'label' => __('AI label', 'nxt-ai-label'),
 			'input' => 'html',
 			'html' => $html,
 		];
@@ -175,7 +192,7 @@ final class NXT_AI_Label_Media_Fields {
 
 		$attachment_id = isset($_POST['attachment_id']) ? (int) $_POST['attachment_id'] : 0;
 		if ($attachment_id <= 0 || !current_user_can('edit_post', $attachment_id) || !wp_attachment_is_image($attachment_id)) {
-			wp_send_json_error(['message' => 'Keine Berechtigung oder kein Bild.'], 403);
+			wp_send_json_error(['message' => __('You cannot edit this image.', 'nxt-ai-label')], 403);
 		}
 
 		$mode = isset($_POST['mode']) ? sanitize_key((string) $_POST['mode']) : 'apply';
@@ -185,7 +202,7 @@ final class NXT_AI_Label_Media_Fields {
 		$enabled = $mode !== 'remove';
 
 		if (!NXT_AI_Label_Processor::mark($attachment_id, $enabled, $slug, $position, $scale)) {
-			wp_send_json_error(['message' => 'Kennzeichnung fehlgeschlagen.'], 500);
+			wp_send_json_error(['message' => __('Could not write the label.', 'nxt-ai-label')], 500);
 		}
 
 		$image = wp_get_attachment_image_src($attachment_id, 'large');
@@ -194,7 +211,7 @@ final class NXT_AI_Label_Media_Fields {
 		wp_send_json_success([
 			'enabled' => $enabled,
 			'url' => $url,
-			'message' => $enabled ? 'Kennzeichnung gesetzt.' : 'Kennzeichnung entfernt.',
+			'message' => $enabled ? __('Label applied.', 'nxt-ai-label') : __('Label removed.', 'nxt-ai-label'),
 		]);
 	}
 }

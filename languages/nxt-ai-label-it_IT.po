@@ -1,0 +1,330 @@
+# Translation of NXT AI Label.
+# Copyright (C) 2026 nexTab
+# This file is distributed under the same license as the NXT AI Label package.
+msgid ""
+msgstr ""
+"Project-Id-Version: NXT AI Label 1.0.0\n"
+"Report-Msgid-Bugs-To: https://nextab.de\n"
+"POT-Creation-Date: 2026-10-02 22:57+0200\n"
+"PO-Revision-Date: 2026-10-02 23:00+0200\n"
+"Last-Translator: nexTab\n"
+"Language-Team: nexTab\n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: inc/class-admin.php:21 inc/class-admin.php:22 inc/class-admin.php:44
+#: inc/class-media-fields.php:182
+msgid "AI label"
+msgstr "Etichetta IA"
+
+#: inc/class-admin.php:31
+msgid "You are not allowed to view this page."
+msgstr "Non hai i permessi per vedere questa pagina."
+
+#: inc/class-admin.php:45
+msgid "Only images you mark in the library are changed. Every other file stays as it is."
+msgstr "Vengono modificate solo le immagini che contrassegni nella libreria. Tutti gli altri file restano invariati."
+
+#: inc/class-admin.php:46
+msgid "Automatic when the file declares AI origin"
+msgstr "Automatica quando il file dichiara un’origine IA"
+
+#: inc/class-admin.php:47
+msgid "New uploads are labeled only when the file itself contains trainedAlgorithmicMedia or compositeWithTrainedAlgorithmicMedia (IPTC Digital Source Type, often via Content Credentials). A label you remove stays removed."
+msgstr "I nuovi caricamenti vengono etichettati solo se il file contiene trainedAlgorithmicMedia o compositeWithTrainedAlgorithmicMedia (IPTC Digital Source Type, spesso tramite Content Credentials). Un’etichetta rimossa resta rimossa."
+
+#: inc/class-admin.php:48
+msgid "Generators without that metadata should call nxt_ai_label_mark( $attachment_id ) after the attachment is created. The filter nxt_ai_label_attachment_is_generated runs only while automatic labeling is on."
+msgstr "I generatori senza questi metadati devono chiamare nxt_ai_label_mark( $attachment_id ) dopo la creazione dell’allegato. Il filtro nxt_ai_label_attachment_is_generated viene eseguito solo con l’etichettatura automatica attiva."
+
+#: inc/class-admin.php:54
+msgid "New uploads"
+msgstr "Nuovi caricamenti"
+
+#: inc/class-admin.php:56
+msgid "Apply a label when the file declares an AI origin"
+msgstr "Applica un’etichetta quando il file dichiara un’origine IA"
+
+#: inc/class-admin.php:60 inc/class-admin.php:140
+#: inc/class-media-fields.php:171
+msgid "Label"
+msgstr "Etichetta"
+
+#: inc/class-admin.php:68 inc/class-admin.php:168
+#: inc/class-media-fields.php:173
+msgid "Position"
+msgstr "Posizione"
+
+#: inc/class-admin.php:78 inc/class-admin.php:178
+#: inc/class-media-fields.php:175
+msgid "Size"
+msgstr "Dimensione"
+
+#: inc/class-admin.php:88
+msgid "Save automatic labeling"
+msgstr "Salva etichettatura automatica"
+
+#: inc/class-admin.php:93
+msgid "Scan existing images for AI origin"
+msgstr "Controlla le immagini esistenti per l’origine IA"
+
+#: inc/class-admin.php:95
+msgid "Checks only images with no decision yet and writes the label using the settings above. WP-CLI: wp nxt-ai-label detect"
+msgstr "Controlla solo le immagini senza una decisione e scrive l’etichetta con le impostazioni sopra. WP-CLI: wp nxt-ai-label detect"
+
+#: inc/class-admin.php:96
+msgid "Single image: open it in the library, choose label, position and size, then Apply label."
+msgstr "Singola immagine: aprila nella libreria, scegli etichetta, posizione e dimensione, poi Applica etichetta."
+
+#: inc/class-admin.php:97
+msgid "Several images: select them in the list and choose the bulk action Apply AI label."
+msgstr "Più immagini: selezionarle nell’elenco e scegliere l’azione di massa Applica etichetta IA."
+
+#: inc/class-admin.php:98
+msgid "image with an active label."
+msgid_plural "images with an active label."
+msgstr[0] "immagine con etichetta attiva."
+msgstr[1] "immagini con etichetta attiva."
+
+#: inc/class-admin.php:102
+msgid "Regenerate applied labels"
+msgstr "Rigenera le etichette applicate"
+
+#: inc/class-admin.php:104
+msgid "Rewrites labels that are already applied, using the unmarked backup. It does not add new ones. WP-CLI: wp nxt-ai-label regenerate"
+msgstr "Riscrive le etichette già applicate a partire dalla copia non marcata. Non ne aggiunge di nuove. WP-CLI: wp nxt-ai-label regenerate"
+
+#: inc/class-admin.php:116 inc/class-admin.php:234
+msgid "Apply AI label"
+msgstr "Applica etichetta IA"
+
+#: inc/class-admin.php:119
+#, php-format
+msgid "Only this %d image. The rest of the library stays untouched."
+msgid_plural "Only these %d images. The rest of the library stays untouched."
+msgstr[0] "Solo questa %d immagine. Il resto della libreria resta invariato."
+msgstr[1] "Solo queste %d immagini. Il resto della libreria resta invariato."
+
+#: inc/class-admin.php:133
+msgid "Action"
+msgstr "Azione"
+
+#: inc/class-admin.php:135 inc/class-media-fields.php:177
+msgid "Apply label"
+msgstr "Applica etichetta"
+
+#: inc/class-admin.php:136 inc/class-media-fields.php:178
+msgid "Remove label"
+msgstr "Rimuovi etichetta"
+
+#: inc/class-admin.php:188
+msgid "Apply to selected images"
+msgstr "Applica alle immagini selezionate"
+
+#: inc/class-admin.php:196 inc/class-admin.php:207 inc/class-admin.php:419
+#: inc/class-admin.php:440
+msgid "You are not allowed to do this."
+msgstr "Non hai i permessi per questa azione."
+
+#: inc/class-admin.php:215
+msgid "That selection has expired. Select the images in the library again."
+msgstr "Questa selezione è scaduta. Seleziona di nuovo le immagini nella libreria."
+
+#: inc/class-admin.php:235
+msgid "Regenerate AI label"
+msgstr "Rigenera etichetta IA"
+
+#: inc/class-admin.php:305
+#, php-format
+msgid "AI label applied: %1$d. Skipped: %2$d."
+msgstr "Etichetta IA applicata: %1$d. Ignorate: %2$d."
+
+#: inc/class-admin.php:311
+#, php-format
+msgid "AI label removed: %1$d. Skipped: %2$d."
+msgstr "Etichetta IA rimossa: %1$d. Ignorate: %2$d."
+
+#: inc/class-admin.php:317
+#, php-format
+msgid "AI origin checked: %1$d. Labeled: %2$d."
+msgstr "Origine IA controllata: %1$d. Etichettate: %2$d."
+
+#: inc/class-admin.php:321
+msgid "Automatic labeling saved."
+msgstr "Etichettatura automatica salvata."
+
+#: inc/class-admin.php:324
+#, php-format
+msgid "AI label regenerated: %1$d. Skipped: %2$d. Images without a label stay unchanged."
+msgstr "Etichetta IA rigenerata: %1$d. Ignorate: %2$d. Le immagini senza etichetta restano invariate."
+
+#: inc/class-cli.php:39
+msgid "No valid IDs."
+msgstr "Nessun ID valido."
+
+#: inc/class-cli.php:47
+#, php-format
+msgid "Regenerated: %1$d. Skipped: %2$d."
+msgstr "Rigenerate: %1$d. Ignorate: %2$d."
+
+#: inc/class-cli.php:84
+#, php-format
+msgid "Labeled: %s"
+msgstr "Etichettati: %s"
+
+#: inc/class-cli.php:92
+#, php-format
+msgid "Checked: %1$d. Labeled: %2$d."
+msgstr "Controllati: %1$d. Etichettati: %2$d."
+
+#: inc/class-cover.php:81
+#, php-format
+msgid "AI label: %s"
+msgstr "Etichetta IA: %s"
+
+#: inc/class-labels.php:19
+msgid "AI Generated · black · semi-transparent"
+msgstr "AI Generated · nero · semitrasparente"
+
+#: inc/class-labels.php:20 inc/class-labels.php:26 inc/class-labels.php:32
+#: inc/class-labels.php:38
+msgid "AI Generated"
+msgstr "AI Generated"
+
+#: inc/class-labels.php:25
+msgid "AI Generated · black · solid"
+msgstr "AI Generated · nero · coprente"
+
+#: inc/class-labels.php:31
+msgid "AI Generated · white · semi-transparent"
+msgstr "AI Generated · bianco · semitrasparente"
+
+#: inc/class-labels.php:37
+msgid "AI Generated · white · solid"
+msgstr "AI Generated · bianco · coprente"
+
+#: inc/class-labels.php:43
+msgid "AI Modified · black · semi-transparent"
+msgstr "AI Modified · nero · semitrasparente"
+
+#: inc/class-labels.php:44 inc/class-labels.php:50 inc/class-labels.php:56
+#: inc/class-labels.php:62
+msgid "AI Modified"
+msgstr "AI Modified"
+
+#: inc/class-labels.php:49
+msgid "AI Modified · black · solid"
+msgstr "AI Modified · nero · coprente"
+
+#: inc/class-labels.php:55
+msgid "AI Modified · white · semi-transparent"
+msgstr "AI Modified · bianco · semitrasparente"
+
+#: inc/class-labels.php:61
+msgid "AI Modified · white · solid"
+msgstr "AI Modified · bianco · coprente"
+
+#: inc/class-labels.php:67
+msgid "AI · black · semi-transparent"
+msgstr "AI · nero · semitrasparente"
+
+#: inc/class-labels.php:68 inc/class-labels.php:74 inc/class-labels.php:80
+#: inc/class-labels.php:86
+msgid "AI"
+msgstr "AI"
+
+#: inc/class-labels.php:73
+msgid "AI · black · solid"
+msgstr "AI · nero · coprente"
+
+#: inc/class-labels.php:79
+msgid "AI · white · semi-transparent"
+msgstr "AI · bianco · semitrasparente"
+
+#: inc/class-labels.php:85
+msgid "AI · white · solid"
+msgstr "AI · bianco · coprente"
+
+#: inc/class-labels.php:111
+msgid "Top left"
+msgstr "In alto a sinistra"
+
+#: inc/class-labels.php:112
+msgid "Top right"
+msgstr "In alto a destra"
+
+#: inc/class-labels.php:113
+msgid "Bottom left"
+msgstr "In basso a sinistra"
+
+#: inc/class-labels.php:114
+msgid "Bottom right"
+msgstr "In basso a destra"
+
+#: inc/class-labels.php:128
+msgid "Small"
+msgstr "Piccola"
+
+#: inc/class-labels.php:132
+msgid "Medium"
+msgstr "Media"
+
+#: inc/class-labels.php:136
+msgid "Large"
+msgstr "Grande"
+
+#: inc/class-media-fields.php:64 inc/class-media-fields.php:170
+msgid "Label is applied."
+msgstr "L’etichetta è applicata."
+
+#: inc/class-media-fields.php:65 inc/class-media-fields.php:170
+msgid "No label."
+msgstr "Nessuna etichetta."
+
+#: inc/class-media-fields.php:66
+msgid "Removing label"
+msgstr "Rimozione dell’etichetta"
+
+#: inc/class-media-fields.php:67
+msgid "Writing label"
+msgstr "Scrittura dell’etichetta"
+
+#: inc/class-media-fields.php:68
+msgid "Failed."
+msgstr "Non riuscito."
+
+#: inc/class-media-fields.php:69
+msgid "Request failed."
+msgstr "Richiesta non riuscita."
+
+#: inc/class-media-fields.php:141
+#, php-format
+msgid "%1$s (%2$d px)"
+msgstr "%1$s (%2$d px)"
+
+#: inc/class-media-fields.php:195
+msgid "You cannot edit this image."
+msgstr "Non puoi modificare questa immagine."
+
+#: inc/class-media-fields.php:205
+msgid "Could not write the label."
+msgstr "Impossibile scrivere l’etichetta."
+
+#: inc/class-media-fields.php:214
+msgid "Label applied."
+msgstr "Etichetta applicata."
+
+#: inc/class-media-fields.php:214
+msgid "Label removed."
+msgstr "Etichetta rimossa."
+
+#: nxt-ai-label.php
+msgid "NXT AI Label"
+msgstr "NXT AI Label"
+
+#: nxt-ai-label.php
+msgid "Burns official EU AI labels into selected media images, thumbnails and EWWW WebP files."
+msgstr "Incorpora le etichette ufficiali UE per l’IA nelle immagini selezionate della libreria, nelle miniature e nei file WebP di EWWW."

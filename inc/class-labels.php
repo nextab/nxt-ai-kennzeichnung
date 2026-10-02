@@ -16,74 +16,74 @@ final class NXT_AI_Label_Labels {
 		return [
 			'ai-generated-black-transparent' => [
 				'file' => 'ai-generated-black-transparent.png',
-				'label' => 'AI Generated · schwarz · halbtransparent',
-				'group' => 'AI Generated',
+				'label' => __('AI Generated · black · semi-transparent', 'nxt-ai-label'),
+				'group' => __('AI Generated', 'nxt-ai-label'),
 				'shape' => 'wide',
 			],
 			'ai-generated-black' => [
 				'file' => 'ai-generated-black.png',
-				'label' => 'AI Generated · schwarz · deckend',
-				'group' => 'AI Generated',
+				'label' => __('AI Generated · black · solid', 'nxt-ai-label'),
+				'group' => __('AI Generated', 'nxt-ai-label'),
 				'shape' => 'wide',
 			],
 			'ai-generated-white-transparent' => [
 				'file' => 'ai-generated-white-transparent.png',
-				'label' => 'AI Generated · weiß · halbtransparent',
-				'group' => 'AI Generated',
+				'label' => __('AI Generated · white · semi-transparent', 'nxt-ai-label'),
+				'group' => __('AI Generated', 'nxt-ai-label'),
 				'shape' => 'wide',
 			],
 			'ai-generated-white' => [
 				'file' => 'ai-generated-white.png',
-				'label' => 'AI Generated · weiß · deckend',
-				'group' => 'AI Generated',
+				'label' => __('AI Generated · white · solid', 'nxt-ai-label'),
+				'group' => __('AI Generated', 'nxt-ai-label'),
 				'shape' => 'wide',
 			],
 			'ai-modified-black-transparent' => [
 				'file' => 'ai-modified-black-transparent.png',
-				'label' => 'AI Modified · schwarz · halbtransparent',
-				'group' => 'AI Modified',
+				'label' => __('AI Modified · black · semi-transparent', 'nxt-ai-label'),
+				'group' => __('AI Modified', 'nxt-ai-label'),
 				'shape' => 'wide',
 			],
 			'ai-modified-black' => [
 				'file' => 'ai-modified-black.png',
-				'label' => 'AI Modified · schwarz · deckend',
-				'group' => 'AI Modified',
+				'label' => __('AI Modified · black · solid', 'nxt-ai-label'),
+				'group' => __('AI Modified', 'nxt-ai-label'),
 				'shape' => 'wide',
 			],
 			'ai-modified-white-transparent' => [
 				'file' => 'ai-modified-white-transparent.png',
-				'label' => 'AI Modified · weiß · halbtransparent',
-				'group' => 'AI Modified',
+				'label' => __('AI Modified · white · semi-transparent', 'nxt-ai-label'),
+				'group' => __('AI Modified', 'nxt-ai-label'),
 				'shape' => 'wide',
 			],
 			'ai-modified-white' => [
 				'file' => 'ai-modified-white.png',
-				'label' => 'AI Modified · weiß · deckend',
-				'group' => 'AI Modified',
+				'label' => __('AI Modified · white · solid', 'nxt-ai-label'),
+				'group' => __('AI Modified', 'nxt-ai-label'),
 				'shape' => 'wide',
 			],
 			'ai-black-transparent' => [
 				'file' => 'ai-black-transparent.png',
-				'label' => 'AI · schwarz · halbtransparent',
-				'group' => 'AI',
+				'label' => __('AI · black · semi-transparent', 'nxt-ai-label'),
+				'group' => __('AI', 'nxt-ai-label'),
 				'shape' => 'square',
 			],
 			'ai-black' => [
 				'file' => 'ai-black.png',
-				'label' => 'AI · schwarz · deckend',
-				'group' => 'AI',
+				'label' => __('AI · black · solid', 'nxt-ai-label'),
+				'group' => __('AI', 'nxt-ai-label'),
 				'shape' => 'square',
 			],
 			'ai-white-transparent' => [
 				'file' => 'ai-white-transparent.png',
-				'label' => 'AI · weiß · halbtransparent',
-				'group' => 'AI',
+				'label' => __('AI · white · semi-transparent', 'nxt-ai-label'),
+				'group' => __('AI', 'nxt-ai-label'),
 				'shape' => 'square',
 			],
 			'ai-white' => [
 				'file' => 'ai-white.png',
-				'label' => 'AI · weiß · deckend',
-				'group' => 'AI',
+				'label' => __('AI · white · solid', 'nxt-ai-label'),
+				'group' => __('AI', 'nxt-ai-label'),
 				'shape' => 'square',
 			],
 		];
@@ -108,10 +108,10 @@ final class NXT_AI_Label_Labels {
 	 */
 	public static function positions(): array {
 		return [
-			'top-left' => 'Oben links',
-			'top-right' => 'Oben rechts',
-			'bottom-left' => 'Unten links',
-			'bottom-right' => 'Unten rechts',
+			'top-left' => __('Top left', 'nxt-ai-label'),
+			'top-right' => __('Top right', 'nxt-ai-label'),
+			'bottom-left' => __('Bottom left', 'nxt-ai-label'),
+			'bottom-right' => __('Bottom right', 'nxt-ai-label'),
 		];
 	}
 
@@ -125,15 +125,15 @@ final class NXT_AI_Label_Labels {
 	public static function scales(): array {
 		return [
 			'small' => [
-				'label' => 'Klein',
+				'label' => __('Small', 'nxt-ai-label'),
 				'height' => 30,
 			],
 			'medium' => [
-				'label' => 'Mittel',
+				'label' => __('Medium', 'nxt-ai-label'),
 				'height' => 40,
 			],
 			'large' => [
-				'label' => 'Groß',
+				'label' => __('Large', 'nxt-ai-label'),
 				'height' => 50,
 			],
 		];

@@ -76,7 +76,11 @@ final class NXT_AI_Label_Cover {
 			'<img class="nxt-ai-label-cover nxt-ai-label-cover--%1$s" src="%2$s" alt="%3$s" style="width:%4$dpx" data-label-height="%5$d" data-aspect="%6$s" decoding="async" />',
 			esc_attr($position),
 			esc_url($url),
-			esc_attr($all[$slug]['group']),
+			esc_attr(sprintf(
+				/* translators: %s: official mark name, for example "AI Generated". */
+				__('AI label: %s', 'nxt-ai-label'),
+				$all[$slug]['group']
+			)),
 			max(1, $display_width),
 			$height,
 			esc_attr((string) $aspect)

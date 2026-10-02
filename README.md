@@ -1,4 +1,4 @@
-# NXT AI Kennzeichnung
+# NXT AI Label
 
 Brennt offizielle EU-KI-Kennzeichen in ausgewählte Mediathek-Bilder, Thumbnails und EWWW-WebP-Dateien.
 
@@ -30,7 +30,7 @@ Vor dem ersten Stempel legt das Plugin eine Kopie nach `uploads/nxt-ai-label-bac
 
 ## Installation
 
-1. Den Ordner `nxt-ai-kennzeichnung` nach `wp-content/plugins/` legen.
+1. Den Ordner `nxt-ai-label` nach `wp-content/plugins/` legen.
 2. Im Backend unter Plugins aktivieren.
 3. Ein Bild in der Mediathek öffnen, Motiv, Position und Größe wählen, **Kennzeichnung setzen**.
 
@@ -112,6 +112,10 @@ Liegt `bild.jpg.webp` neben `bild.jpg`, wird sie mit gekennzeichnet. Die Qualit�
 **Kann ich die Kennzeichnung später ändern?**
 
 Ja. Andere Vorlage, andere Ecke oder andere Größe wählen und erneut setzen. Oder unter Werkzeuge „Gesetzte Kennzeichnungen neu erzeugen“. Die Quelle ist immer die unmarkierte Kopie.
+
+## Sprachen
+
+Quellsprache ist Englisch. Mitgeliefert sind Übersetzungen für Deutsch (`de_DE`), Polnisch (`pl_PL`), Italienisch (`it_IT`), Spanisch (`es_ES`) und Französisch (`fr_FR`) in `languages/`. Die Oberfläche folgt der Sprache des WordPress-Benutzers. Die Schriftzüge auf den EU-Zeichen bleiben Englisch, weil das die offiziellen Vorlagen sind.
 
 ## Changelog
 

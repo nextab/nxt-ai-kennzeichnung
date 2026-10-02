@@ -124,8 +124,9 @@
 		panel.dataset.enabled = enabled ? '1' : '0';
 		var status = panel.querySelector('.nxt-ai-label__status');
 		var msg = panel.querySelector('.nxt-ai-label__msg');
+		var i18n = cfg.i18n || {};
 		if (status) {
-			status.textContent = enabled ? 'Kennzeichnung ist gesetzt.' : 'Keine Kennzeichnung.';
+			status.textContent = enabled ? (i18n.applied || 'Label is applied.') : (i18n.none || 'No label.');
 		}
 		if (msg) {
 			msg.textContent = message || '';
@@ -149,7 +150,8 @@
 		buttons.forEach(function (button) {
 			button.disabled = true;
 		});
-		showOverlay(mode === 'remove' ? 'Kennzeichnung wird entfernt' : 'Kennzeichnung wird geschrieben');
+		var i18n = cfg.i18n || {};
+		showOverlay(mode === 'remove' ? (i18n.removing || 'Removing label') : (i18n.writing || 'Writing label'));
 
 		var body = new FormData();
 		body.append('action', 'nxt_ai_label_apply');
@@ -168,7 +170,7 @@
 			return response.json();
 		}).then(function (payload) {
 			if (!payload || !payload.success) {
-				var err = payload && payload.data && payload.data.message ? payload.data.message : 'Fehlgeschlagen.';
+				var err = payload && payload.data && payload.data.message ? payload.data.message : ((cfg.i18n && cfg.i18n.failed) || 'Failed.');
 				setStatus(panel, panel.dataset.enabled === '1', err);
 				return;
 			}
@@ -176,7 +178,7 @@
 			clearBadge();
 			refreshImage(payload.data.url || '');
 		}).catch(function () {
-			setStatus(panel, panel.dataset.enabled === '1', 'Anfrage fehlgeschlagen.');
+			setStatus(panel, panel.dataset.enabled === '1', (cfg.i18n && cfg.i18n.requestFailed) || 'Request failed.');
 		}).finally(function () {
 			hideOverlay();
 			buttons.forEach(function (button) {

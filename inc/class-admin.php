@@ -18,17 +18,17 @@ final class NXT_AI_Label_Admin {
 
 	public static function menu(): void {
 		add_management_page(
-			'KI-Kennzeichnung',
-			'KI-Kennzeichnung',
+			__('AI label', 'nxt-ai-label'),
+			__('AI label', 'nxt-ai-label'),
 			'upload_files',
-			'nxt-ai-kennzeichnung',
+			'nxt-ai-label',
 			[self::class, 'render_page']
 		);
 	}
 
 	public static function render_page(): void {
 		if (!current_user_can('upload_files')) {
-			wp_die(esc_html__('Du hast keine Berechtigung für diese Seite.', 'nxt-ai-kennzeichnung'));
+			wp_die(esc_html__('You are not allowed to view this page.', 'nxt-ai-label'));
 		}
 
 		$bulk_ids = self::bulk_ids_from_request();
@@ -41,23 +41,23 @@ final class NXT_AI_Label_Admin {
 		$auto = NXT_AI_Label_Auto::settings();
 		?>
 		<div class="wrap">
-			<h1>KI-Kennzeichnung</h1>
-			<p>Betrifft nur Bilder, bei denen die Kennzeichnung in der Mediathek gesetzt ist. Andere Dateien bleiben unverändert.</p>
-			<h2>Automatisch bei KI-Herkunft</h2>
-			<p>Neue Uploads werden nur gekennzeichnet, wenn die Datei selbst <code>trainedAlgorithmicMedia</code> oder <code>compositeWithTrainedAlgorithmicMedia</code> trägt (IPTC Digital Source Type, oft über Content Credentials). Ein Haken, den du wieder entfernst, bleibt entfernt.</p>
-			<p>Eigene Erzeugung ohne diese Metadaten: nach dem Anlegen <code>nxt_ai_label_mark( $attachment_id )</code> aufrufen. Oder Filter <code>nxt_ai_label_attachment_is_generated</code>, sobald die Automatik hier an ist.</p>
+			<h1><?php esc_html_e('AI label', 'nxt-ai-label'); ?></h1>
+			<p><?php esc_html_e('Only images you mark in the library are changed. Every other file stays as it is.', 'nxt-ai-label'); ?></p>
+			<h2><?php esc_html_e('Automatic when the file declares AI origin', 'nxt-ai-label'); ?></h2>
+			<p><?php esc_html_e('New uploads are labeled only when the file itself contains trainedAlgorithmicMedia or compositeWithTrainedAlgorithmicMedia (IPTC Digital Source Type, often via Content Credentials). A label you remove stays removed.', 'nxt-ai-label'); ?></p>
+			<p><?php esc_html_e('Generators without that metadata should call nxt_ai_label_mark( $attachment_id ) after the attachment is created. The filter nxt_ai_label_attachment_is_generated runs only while automatic labeling is on.', 'nxt-ai-label'); ?></p>
 			<form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
 				<input type="hidden" name="action" value="nxt_ai_label_auto_save" />
 				<?php wp_nonce_field('nxt_ai_label_auto_save'); ?>
 				<table class="form-table" role="presentation">
 					<tr>
-						<th scope="row">Neue Uploads</th>
+						<th scope="row"><?php esc_html_e('New uploads', 'nxt-ai-label'); ?></th>
 						<td>
-							<label><input type="checkbox" name="nxt_ai_label_auto_enabled" value="1" <?php checked($auto['enabled']); ?> /> Kennzeichnung setzen, wenn die Datei KI-Herkunft meldet</label>
+							<label><input type="checkbox" name="nxt_ai_label_auto_enabled" value="1" <?php checked($auto['enabled']); ?> /> <?php esc_html_e('Apply a label when the file declares an AI origin', 'nxt-ai-label'); ?></label>
 						</td>
 					</tr>
 					<tr>
-						<th scope="row"><label for="nxt_ai_label_auto_slug">Kennzeichnung</label></th>
+						<th scope="row"><label for="nxt_ai_label_auto_slug"><?php esc_html_e('Label', 'nxt-ai-label'); ?></label></th>
 						<td>
 							<select name="nxt_ai_label_slug" id="nxt_ai_label_auto_slug">
 								<?php echo self::label_options($auto['slug']); ?>
@@ -65,7 +65,7 @@ final class NXT_AI_Label_Admin {
 						</td>
 					</tr>
 					<tr>
-						<th scope="row"><label for="nxt_ai_label_auto_position">Position</label></th>
+						<th scope="row"><label for="nxt_ai_label_auto_position"><?php esc_html_e('Position', 'nxt-ai-label'); ?></label></th>
 						<td>
 							<select name="nxt_ai_label_position" id="nxt_ai_label_auto_position">
 								<?php foreach (NXT_AI_Label_Labels::positions() as $key => $label) : ?>
@@ -75,7 +75,7 @@ final class NXT_AI_Label_Admin {
 						</td>
 					</tr>
 					<tr>
-						<th scope="row"><label for="nxt_ai_label_auto_scale">Größe</label></th>
+						<th scope="row"><label for="nxt_ai_label_auto_scale"><?php esc_html_e('Size', 'nxt-ai-label'); ?></label></th>
 						<td>
 							<select name="nxt_ai_label_scale" id="nxt_ai_label_auto_scale">
 								<?php foreach (NXT_AI_Label_Labels::scales() as $key => $item) : ?>
@@ -85,23 +85,23 @@ final class NXT_AI_Label_Admin {
 						</td>
 					</tr>
 				</table>
-				<?php submit_button('Automatik speichern', 'secondary'); ?>
+				<?php submit_button(__('Save automatic labeling', 'nxt-ai-label'), 'secondary'); ?>
 			</form>
 			<form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
 				<input type="hidden" name="action" value="nxt_ai_label_scan" />
 				<?php wp_nonce_field('nxt_ai_label_scan'); ?>
-				<?php submit_button('Bestehende Bilder auf KI-Herkunft prüfen', 'secondary'); ?>
+				<?php submit_button(__('Scan existing images for AI origin', 'nxt-ai-label'), 'secondary'); ?>
 			</form>
-			<p class="description">Prüft nur Bilder ohne gesetzte Entscheidung und schreibt die Kennzeichnung mit den Werten oben. WP-CLI: <code>wp nxt-ai-label detect</code></p>
-			<p>Einzelnes Bild: Mediathek öffnen, Bild bearbeiten, Haken „Mit KI erzeugt oder verändert“, Kennzeichnung, Position und Größe wählen, speichern.</p>
-			<p>Mehrere Bilder: in der Mediathek-Liste markieren, Aktion „KI-Kennzeichnung setzen“.</p>
-			<p><strong><?php echo esc_html((string) $count); ?></strong> Bild(er) mit aktiver Kennzeichnung.</p>
+			<p class="description"><?php esc_html_e('Checks only images with no decision yet and writes the label using the settings above. WP-CLI: wp nxt-ai-label detect', 'nxt-ai-label'); ?></p>
+			<p><?php esc_html_e('Single image: open it in the library, choose label, position and size, then Apply label.', 'nxt-ai-label'); ?></p>
+			<p><?php esc_html_e('Several images: select them in the list and choose the bulk action Apply AI label.', 'nxt-ai-label'); ?></p>
+			<p><strong><?php echo esc_html((string) $count); ?></strong> <?php echo esc_html(_n('image with an active label.', 'images with an active label.', $count, 'nxt-ai-label')); ?></p>
 			<form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
 				<input type="hidden" name="action" value="nxt_ai_label_regenerate" />
 				<?php wp_nonce_field('nxt_ai_label_regenerate'); ?>
-				<?php submit_button('Gesetzte Kennzeichnungen neu erzeugen', 'secondary', 'submit', false, $count === 0 ? ['disabled' => 'disabled'] : null); ?>
+				<?php submit_button(__('Regenerate applied labels', 'nxt-ai-label'), 'secondary', 'submit', false, $count === 0 ? ['disabled' => 'disabled'] : null); ?>
 			</form>
-			<p class="description">Schreibt vorhandene Kennzeichnungen aus dem Backup neu. Setzt keine neuen. WP-CLI: <code>wp nxt-ai-label regenerate</code></p>
+			<p class="description"><?php esc_html_e('Rewrites labels that are already applied, using the unmarked backup. It does not add new ones. WP-CLI: wp nxt-ai-label regenerate', 'nxt-ai-label'); ?></p>
 		</div>
 		<?php
 	}
@@ -113,8 +113,12 @@ final class NXT_AI_Label_Admin {
 		$token = isset($_GET['bulk']) ? sanitize_key((string) $_GET['bulk']) : '';
 		?>
 		<div class="wrap">
-			<h1>KI-Kennzeichnung setzen</h1>
-			<p>Nur diese <?php echo esc_html((string) count($ids)); ?> Bilder. Der Rest der Mediathek bleibt unangetastet.</p>
+			<h1><?php esc_html_e('Apply AI label', 'nxt-ai-label'); ?></h1>
+			<p><?php echo esc_html(sprintf(
+				/* translators: %d: number of selected images */
+				_n('Only this %d image. The rest of the library stays untouched.', 'Only these %d images. The rest of the library stays untouched.', count($ids), 'nxt-ai-label'),
+				count($ids)
+			)); ?></p>
 			<ul>
 				<?php foreach ($ids as $id) : ?>
 					<li><?php echo esc_html(get_the_title($id) !== '' ? get_the_title($id) : ('#' . $id)); ?> <code>#<?php echo esc_html((string) $id); ?></code></li>
@@ -126,14 +130,14 @@ final class NXT_AI_Label_Admin {
 				<?php wp_nonce_field('nxt_ai_label_apply'); ?>
 				<table class="form-table" role="presentation">
 					<tr>
-						<th scope="row">Aktion</th>
+						<th scope="row"><?php esc_html_e('Action', 'nxt-ai-label'); ?></th>
 						<td>
-							<label><input type="radio" name="nxt_ai_label_mode" value="set" checked="checked" /> Kennzeichnung setzen</label><br />
-							<label><input type="radio" name="nxt_ai_label_mode" value="remove" /> Kennzeichnung entfernen</label>
+							<label><input type="radio" name="nxt_ai_label_mode" value="set" checked="checked" /> <?php esc_html_e('Apply label', 'nxt-ai-label'); ?></label><br />
+							<label><input type="radio" name="nxt_ai_label_mode" value="remove" /> <?php esc_html_e('Remove label', 'nxt-ai-label'); ?></label>
 						</td>
 					</tr>
 					<tr>
-						<th scope="row"><label for="nxt_ai_label_slug">Kennzeichnung</label></th>
+						<th scope="row"><label for="nxt_ai_label_slug"><?php esc_html_e('Label', 'nxt-ai-label'); ?></label></th>
 						<td>
 							<select name="nxt_ai_label_slug" id="nxt_ai_label_slug">
 								<?php
@@ -161,7 +165,7 @@ final class NXT_AI_Label_Admin {
 						</td>
 					</tr>
 					<tr>
-						<th scope="row"><label for="nxt_ai_label_position">Position</label></th>
+						<th scope="row"><label for="nxt_ai_label_position"><?php esc_html_e('Position', 'nxt-ai-label'); ?></label></th>
 						<td>
 							<select name="nxt_ai_label_position" id="nxt_ai_label_position">
 								<?php foreach (NXT_AI_Label_Labels::positions() as $key => $label) : ?>
@@ -171,7 +175,7 @@ final class NXT_AI_Label_Admin {
 						</td>
 					</tr>
 					<tr>
-						<th scope="row"><label for="nxt_ai_label_scale">Größe</label></th>
+						<th scope="row"><label for="nxt_ai_label_scale"><?php esc_html_e('Size', 'nxt-ai-label'); ?></label></th>
 						<td>
 							<select name="nxt_ai_label_scale" id="nxt_ai_label_scale">
 								<?php foreach (NXT_AI_Label_Labels::scales() as $key => $item) : ?>
@@ -181,7 +185,7 @@ final class NXT_AI_Label_Admin {
 						</td>
 					</tr>
 				</table>
-				<?php submit_button('Auf ausgewählte Bilder anwenden'); ?>
+				<?php submit_button(__('Apply to selected images', 'nxt-ai-label')); ?>
 			</form>
 		</div>
 		<?php
@@ -189,7 +193,7 @@ final class NXT_AI_Label_Admin {
 
 	public static function handle_regenerate(): void {
 		if (!current_user_can('upload_files')) {
-			wp_die(esc_html__('Du hast keine Berechtigung für diese Aktion.', 'nxt-ai-kennzeichnung'));
+			wp_die(esc_html__('You are not allowed to do this.', 'nxt-ai-label'));
 		}
 
 		check_admin_referer('nxt_ai_label_regenerate');
@@ -200,7 +204,7 @@ final class NXT_AI_Label_Admin {
 
 	public static function handle_apply(): void {
 		if (!current_user_can('upload_files')) {
-			wp_die(esc_html__('Du hast keine Berechtigung für diese Aktion.', 'nxt-ai-kennzeichnung'));
+			wp_die(esc_html__('You are not allowed to do this.', 'nxt-ai-label'));
 		}
 
 		check_admin_referer('nxt_ai_label_apply');
@@ -208,7 +212,7 @@ final class NXT_AI_Label_Admin {
 		$token = isset($_POST['bulk']) ? sanitize_key((string) $_POST['bulk']) : '';
 		$ids = self::bulk_ids($token);
 		if ($ids === []) {
-			wp_die(esc_html__('Die Auswahl ist abgelaufen. Bitte die Bilder in der Mediathek erneut markieren.', 'nxt-ai-kennzeichnung'));
+			wp_die(esc_html__('That selection has expired. Select the images in the library again.', 'nxt-ai-label'));
 		}
 
 		$mode = isset($_POST['nxt_ai_label_mode']) ? sanitize_key((string) $_POST['nxt_ai_label_mode']) : 'set';
@@ -227,8 +231,8 @@ final class NXT_AI_Label_Admin {
 	 * @return array<string, string>
 	 */
 	public static function bulk_actions(array $actions): array {
-		$actions['nxt_ai_label_apply'] = 'KI-Kennzeichnung setzen';
-		$actions['nxt_ai_label_regenerate'] = 'KI-Kennzeichnung neu erzeugen';
+		$actions['nxt_ai_label_apply'] = __('Apply AI label', 'nxt-ai-label');
+		$actions['nxt_ai_label_regenerate'] = __('Regenerate AI label', 'nxt-ai-label');
 		return $actions;
 	}
 
@@ -258,7 +262,7 @@ final class NXT_AI_Label_Admin {
 
 			return add_query_arg(
 				[
-					'page' => 'nxt-ai-kennzeichnung',
+					'page' => 'nxt-ai-label',
 					'bulk' => $token,
 				],
 				admin_url('tools.php')
@@ -296,11 +300,31 @@ final class NXT_AI_Label_Admin {
 		$checked = isset($_GET['nxt_ai_label_checked']) ? (int) $_GET['nxt_ai_label_checked'] : 0;
 
 		$message = match ($notice) {
-			'applied' => sprintf('KI-Kennzeichnung gesetzt: %d Bild(er). Übersprungen: %d.', $done, $skipped),
-			'removed' => sprintf('KI-Kennzeichnung entfernt: %d Bild(er). Übersprungen: %d.', $done, $skipped),
-			'detected' => sprintf('KI-Herkunft geprüft: %d Bild(er). Davon gekennzeichnet: %d.', $checked, $done),
-			'saved' => 'Automatik gespeichert.',
-			default => sprintf('KI-Kennzeichnung neu erzeugt: %d Bild(er). Übersprungen: %d. Bilder ohne gesetzte Kennzeichnung bleiben unverändert.', $done, $skipped),
+			'applied' => sprintf(
+				/* translators: 1: images changed, 2: images skipped */
+				__('AI label applied: %1$d. Skipped: %2$d.', 'nxt-ai-label'),
+				$done,
+				$skipped
+			),
+			'removed' => sprintf(
+				/* translators: 1: images changed, 2: images skipped */
+				__('AI label removed: %1$d. Skipped: %2$d.', 'nxt-ai-label'),
+				$done,
+				$skipped
+			),
+			'detected' => sprintf(
+				/* translators: 1: images checked, 2: images labeled */
+				__('AI origin checked: %1$d. Labeled: %2$d.', 'nxt-ai-label'),
+				$checked,
+				$done
+			),
+			'saved' => __('Automatic labeling saved.', 'nxt-ai-label'),
+			default => sprintf(
+				/* translators: 1: images regenerated, 2: images skipped */
+				__('AI label regenerated: %1$d. Skipped: %2$d. Images without a label stay unchanged.', 'nxt-ai-label'),
+				$done,
+				$skipped
+			),
 		};
 
 		echo '<div class="notice notice-success is-dismissible"><p>';
@@ -314,7 +338,7 @@ final class NXT_AI_Label_Admin {
 	private static function redirect_with_result(array $result, string $notice): void {
 		$redirect = add_query_arg(
 			[
-				'page' => 'nxt-ai-kennzeichnung',
+				'page' => 'nxt-ai-label',
 				'nxt_ai_label_notice' => $notice,
 				'nxt_ai_label_done' => (int) $result['processed'],
 				'nxt_ai_label_skipped' => (int) $result['skipped'],
@@ -392,7 +416,7 @@ final class NXT_AI_Label_Admin {
 
 	public static function handle_auto_save(): void {
 		if (!current_user_can('upload_files')) {
-			wp_die(esc_html__('Du hast keine Berechtigung für diese Aktion.', 'nxt-ai-kennzeichnung'));
+			wp_die(esc_html__('You are not allowed to do this.', 'nxt-ai-label'));
 		}
 
 		check_admin_referer('nxt_ai_label_auto_save');
@@ -413,7 +437,7 @@ final class NXT_AI_Label_Admin {
 
 	public static function handle_scan(): void {
 		if (!current_user_can('upload_files')) {
-			wp_die(esc_html__('Du hast keine Berechtigung für diese Aktion.', 'nxt-ai-kennzeichnung'));
+			wp_die(esc_html__('You are not allowed to do this.', 'nxt-ai-label'));
 		}
 
 		check_admin_referer('nxt_ai_label_scan');
@@ -456,7 +480,7 @@ final class NXT_AI_Label_Admin {
 		delete_transient($stats_key);
 		$redirect = add_query_arg(
 			[
-				'page' => 'nxt-ai-kennzeichnung',
+				'page' => 'nxt-ai-label',
 				'nxt_ai_label_notice' => 'detected',
 				'nxt_ai_label_done' => (int) $stats['marked'],
 				'nxt_ai_label_checked' => (int) $stats['checked'],

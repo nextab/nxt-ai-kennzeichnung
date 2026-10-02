@@ -14,12 +14,12 @@ final class NXT_AI_Label_CLI {
 	}
 
 	/**
-	 * Kennzeichnungen aus dem Backup neu erzeugen.
+	 * Rewrite applied labels from the unmarked backup.
 	 *
 	 * ## OPTIONS
 	 *
 	 * [--id=<ids>]
-	 * : Kommagetrennte Attachment-IDs. Ohne Angabe: alle mit aktiver Kennzeichnung.
+	 * : Comma-separated attachment IDs. Default: every attachment that already has a label.
 	 *
 	 * ## EXAMPLES
 	 *
@@ -36,14 +36,15 @@ final class NXT_AI_Label_CLI {
 		if (isset($assoc_args['id']) && $assoc_args['id'] !== '') {
 			$ids = array_values(array_filter(array_map('intval', explode(',', $assoc_args['id']))));
 			if ($ids === []) {
-				WP_CLI::error('Keine gültigen IDs.');
+				WP_CLI::error(__('No valid IDs.', 'nxt-ai-label'));
 			}
 		}
 
 		$result = NXT_AI_Label_Processor::regenerate($ids);
 
 		WP_CLI::success(sprintf(
-			'Neu erzeugt: %d. Übersprungen: %d.',
+			/* translators: 1: images regenerated, 2: images skipped */
+			__('Regenerated: %1$d. Skipped: %2$d.', 'nxt-ai-label'),
 			$result['processed'],
 			$result['skipped']
 		));
@@ -54,9 +55,9 @@ final class NXT_AI_Label_CLI {
 	}
 
 	/**
-	 * Bilder ohne Entscheidung auf IPTC-KI-Herkunft prüfen und kennzeichnen.
+	 * Check attachments with no decision yet for an IPTC AI origin and label matches.
 	 *
-	 * Nutzt Kennzeichnung, Position und Größe aus der Automatik-Einstellung.
+	 * Uses the label, position and size stored for automatic labeling.
 	 *
 	 * ## EXAMPLES
 	 *
@@ -78,10 +79,19 @@ final class NXT_AI_Label_CLI {
 			$marked += $batch['marked'];
 			$after = $batch['last_id'];
 			if ($batch['ids'] !== []) {
-				WP_CLI::log('Gekennzeichnet: ' . implode(', ', $batch['ids']));
+				WP_CLI::log(sprintf(
+					/* translators: %s: comma-separated attachment IDs */
+					__('Labeled: %s', 'nxt-ai-label'),
+					implode(', ', $batch['ids'])
+				));
 			}
 		} while (!$batch['done']);
 
-		WP_CLI::success(sprintf('Geprüft: %d. Gekennzeichnet: %d.', $checked, $marked));
+		WP_CLI::success(sprintf(
+			/* translators: 1: images checked, 2: images labeled */
+			__('Checked: %1$d. Labeled: %2$d.', 'nxt-ai-label'),
+			$checked,
+			$marked
+		));
 	}
 }
