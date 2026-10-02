@@ -1,0 +1,62 @@
+.attachment-media-view,
+.wp_attachment_holder {
+	position: relative;
+}
+.nxt-ai-label__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+.nxt-ai-label__field {
+	display: block;
+	margin: 0 0 8px;
+}
+.nxt-ai-label__field select {
+	display: block;
+	margin-top: 4px;
+	max-width: 100%;
+}
+.nxt-ai-label__msg,
+.nxt-ai-label__status {
+	margin: 0 0 8px;
+}
+.nxt-ai-label-badge {
+	pointer-events: none;
+	position: absolute;
+	z-index: 2;
+}
+.nxt-ai-label-overlay {
+	align-items: center;
+	background: rgba(0, 0, 0, 0.55);
+	display: flex;
+	inset: 0;
+	justify-content: center;
+	position: absolute;
+	z-index: 100000;
+}
+.nxt-ai-label-overlay--screen {
+	position: fixed;
+}
+.nxt-ai-label-overlay__box {
+	align-items: center;
+	color: #fff;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+.nxt-ai-label-overlay__box p {
+	margin: 0;
+}
+.nxt-ai-label-overlay__spin {
+	animation: nxt-ai-label-spin 0.8s linear infinite;
+	border: 3px solid rgba(255, 255, 255, 0.35);
+	border-radius: 50%;
+	border-top-color: #fff;
+	height: 36px;
+	width: 36px;
+}
+@keyframes nxt-ai-label-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
